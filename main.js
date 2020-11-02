@@ -5,7 +5,9 @@ const validation = () =>{
     const conpass = document.querySelector('#conpass').value;
     const mobileNumber = document.querySelector('#mobileNumber').value;
     const email = document.querySelector('#email').value;
+    const button = document.querySelector('#button');
     // const checkbox = document.querySelector('.checked');
+    const loader = document.querySelector(".loader");
     
 
 
@@ -38,7 +40,7 @@ const validation = () =>{
     }
 
 
-    if((pass.length <= 8) || (pass.length > 20)){
+    if((pass.length < 8) || (pass.length > 20)){
         document.querySelector('#passwords').innerHTML = "**Please enter a length between 8 and 20";
         return false;  
     }
@@ -83,5 +85,39 @@ const validation = () =>{
         document.querySelector('#emails').innerHTML = ". Invalid Position";
         return false;
     }
+
+    // button.disabled = false;
+
+    // if(user && users && email && pass && conpass !== ""  && pass === conpass){
+    //     loader.classList.add("show");
+
+    //     window.setTimeout(function(){
+    //         loader.classList.remove("show";)
+    //     })
+    // }
+
+    if (
+        user &&
+        users &&
+        email &&
+        pass &&
+        conpass !== "" &&
+        pass === conpass
+      ) {
+        loader.classList.add("show");
+        // button.disabled = false;
+    
+        window.setTimeout(function () {
+          loader.classList.remove("show");
+        //   button.disabled = false;
+        }, 2000);
+      } else {
+          button.disabled = true
+      }
 }
 
+
+window.setTimeout(function () {
+    loader.classList.remove("show");
+    button.disabled = false;
+  }, 2000);
